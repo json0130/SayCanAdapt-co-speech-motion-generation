@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "saycan-gesture"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.40",
+    "numpy>=1.26",
+    "pydantic>=2.5",
+    "pyyaml>=6.0",
+    "sentence-transformers>=2.7",
+    "pyarrow>=14.0",
+    "pandas>=2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "mypy>=1.8",
+    "ruff>=0.3",
+    "types-PyYAML>=6.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+exclude = ["src/robot/pepper/server\\.py"]
+
+[[tool.mypy.overrides]]
+module = [
+    "yaml",
+    "sentence_transformers.*",
+    "pyarrow.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"

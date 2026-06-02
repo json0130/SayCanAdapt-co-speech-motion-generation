@@ -1,0 +1,304 @@
+# Pepper gesture library — v1
+# ~30 curated gestures for the SayCan-Gesture system.
+#
+# Schema per entry:
+#   id            (str)   unique snake_case identifier
+#   label         (str)   human-readable name
+#   description   (str)   one sentence describing what the gesture communicates
+#   duration_s    (float) nominal execution time in seconds
+#   requires_pose (str)   robot pose required ("Stand" or "Sit")
+#   joints_used   (list)  primary joints involved (NAOqi 2.x names)
+#   tags          (list)  semantic category tags (used by SimulatedEngagementFeedback)
+#   naoqi_animation (str) path in Pepper's animation library (best-effort mapping)
+#
+# Joint naming convention: NAOqi 2.x
+#   Head:  HeadYaw, HeadPitch
+#   Left:  LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll, LWristYaw, LHand
+#   Right: RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll, RWristYaw, RHand
+#   Body:  HipPitch, HipRoll, KneePitch
+
+gestures:
+
+  # ── Greetings ────────────────────────────────────────────────────────────────
+
+  - id: wave_right
+    label: Wave Right
+    description: Raise and wave the right hand as a friendly hello.
+    duration_s: 2.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RShoulderRoll, RElbowRoll, RWristYaw]
+    tags: [greeting, wave, friendly, hello]
+    naoqi_animation: animations/Stand/Gestures/Hey_1
+
+  - id: wave_both
+    label: Wave Both Hands
+    description: Wave both arms simultaneously in an enthusiastic greeting.
+    duration_s: 3.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LShoulderRoll, LElbowRoll, RShoulderPitch, RShoulderRoll, RElbowRoll]
+    tags: [greeting, wave, friendly, hello, enthusiastic]
+    naoqi_animation: animations/Stand/Gestures/Hey_3
+
+  - id: wave_farewell
+    label: Wave Farewell
+    description: Slow sweeping wave of the right hand as a goodbye.
+    duration_s: 3.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RShoulderRoll, RElbowRoll, RWristYaw]
+    tags: [greeting, wave, farewell, goodbye]
+    naoqi_animation: animations/Stand/Gestures/Hey_2
+
+  - id: nod_hello
+    label: Nod Hello
+    description: A single acknowledging nod as a minimal greeting.
+    duration_s: 1.0
+    requires_pose: Stand
+    joints_used: [HeadPitch]
+    tags: [greeting, nod, acknowledge, minimal]
+    naoqi_animation: animations/Stand/Gestures/Yes_1
+
+  - id: bow_greeting
+    label: Bow
+    description: A slight forward bow as a respectful greeting.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [HipPitch, HeadPitch]
+    tags: [greeting, bow, respectful, formal]
+    naoqi_animation: animations/Stand/BodyTalk/Speaking/BodyTalk_1
+
+  # ── Deictic / pointing ───────────────────────────────────────────────────────
+
+  - id: point_forward
+    label: Point Forward
+    description: Extend the right arm to point straight ahead at something nearby.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RShoulderRoll, RElbowRoll]
+    tags: [deictic, point, forward, reference]
+    naoqi_animation: animations/Stand/Gestures/Here_1
+
+  - id: point_right
+    label: Point Right
+    description: Extend the right arm to the right, indicating something to the side.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RShoulderRoll, RElbowRoll, RWristYaw]
+    tags: [deictic, point, direction, right]
+    naoqi_animation: animations/Stand/Gestures/Far_1
+
+  - id: point_left
+    label: Point Left
+    description: Extend the left arm to the left, indicating something to the other side.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LShoulderRoll, LElbowRoll, LWristYaw]
+    tags: [deictic, point, direction, left]
+    naoqi_animation: animations/Stand/Gestures/Far_1
+
+  - id: point_up
+    label: Point Up
+    description: Raise the right index finger upward to indicate something above or a key idea.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RElbowRoll, RWristYaw]
+    tags: [deictic, point, up, emphasis, idea]
+    naoqi_animation: animations/Stand/Gestures/Explain_1
+
+  # ── Beats ────────────────────────────────────────────────────────────────────
+
+  - id: beat_small
+    label: Small Beat
+    description: A small rhythmic wrist flick that marks prosodic stress on a word.
+    duration_s: 1.0
+    requires_pose: Stand
+    joints_used: [RWristYaw]
+    tags: [beat, rhythm, emphasis, small]
+    naoqi_animation: animations/Stand/Gestures/Explain_3
+
+  - id: beat_medium
+    label: Medium Beat
+    description: A medium forearm bounce that underlines a phrase with moderate emphasis.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RElbowRoll]
+    tags: [beat, rhythm, emphasis, medium]
+    naoqi_animation: animations/Stand/Gestures/Explain_4
+
+  - id: beat_alternating
+    label: Alternating Beat
+    description: Alternating left-right arm beats conveying a sequence or back-and-forth idea.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LElbowRoll, RShoulderPitch, RElbowRoll]
+    tags: [beat, rhythm, alternating, sequence]
+    naoqi_animation: animations/Stand/Gestures/Explain_5
+
+  # ── Iconic ───────────────────────────────────────────────────────────────────
+
+  - id: show_big
+    label: Show Big
+    description: Spread both arms wide apart to indicate something large or impressive.
+    duration_s: 2.5
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LShoulderRoll, LElbowRoll, RShoulderPitch, RShoulderRoll, RElbowRoll]
+    tags: [iconic, size, big, large, expansive]
+    naoqi_animation: animations/Stand/Gestures/ShowSky_1
+
+  - id: show_small
+    label: Show Small
+    description: Bring both hands close together, palms facing, to indicate something small.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LElbowRoll, LWristYaw, RShoulderPitch, RElbowRoll, RWristYaw]
+    tags: [iconic, size, small, little, compact]
+    naoqi_animation: animations/Stand/Gestures/ShowFloor_1
+
+  - id: show_amount
+    label: Show Amount
+    description: Hold hands a specific distance apart to illustrate a quantity or extent.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LElbowRoll, RShoulderPitch, RElbowRoll]
+    tags: [iconic, quantity, amount, extent, measure]
+    naoqi_animation: animations/Stand/Gestures/Explain_2
+
+  - id: present_open
+    label: Present Open
+    description: Extend both open palms forward as an offering or invitation.
+    duration_s: 2.5
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LShoulderRoll, LElbowRoll, LHand, RShoulderPitch, RShoulderRoll, RElbowRoll, RHand]
+    tags: [iconic, offer, invitation, open, present]
+    naoqi_animation: animations/Stand/Gestures/ComeOn_1
+
+  - id: cup_hands
+    label: Cup Hands
+    description: Cup both hands together as if cradling or carefully presenting something.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LElbowRoll, LHand, RShoulderPitch, RElbowRoll, RHand]
+    tags: [iconic, careful, hold, present, gentle]
+    naoqi_animation: animations/Stand/Gestures/ShowFloor_2
+
+  # ── Affect ───────────────────────────────────────────────────────────────────
+
+  - id: nod_yes
+    label: Nod Yes
+    description: Repeated head nods expressing agreement or affirmation.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [HeadPitch]
+    tags: [affect, agreement, yes, nod, positive]
+    naoqi_animation: animations/Stand/Gestures/Yes_2
+
+  - id: shake_no
+    label: Shake No
+    description: Left-right head shake expressing disagreement or negation.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [HeadYaw]
+    tags: [affect, disagreement, no, shake, negative]
+    naoqi_animation: animations/Stand/Gestures/No_1
+
+  - id: shrug
+    label: Shrug
+    description: Raise both shoulders in a shrug to convey uncertainty or "I don't know".
+    duration_s: 2.5
+    requires_pose: Stand
+    joints_used: [LShoulderRoll, LShoulderPitch, RShoulderRoll, RShoulderPitch]
+    tags: [affect, uncertainty, shrug, dont_know, confusion]
+    naoqi_animation: animations/Stand/Gestures/IDontKnow_1
+
+  - id: hands_up_surprise
+    label: Hands Up Surprise
+    description: Both arms raise quickly in a gesture of surprise or alarm.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LShoulderRoll, RShoulderPitch, RShoulderRoll]
+    tags: [affect, surprise, alarm, react, exclaim]
+    naoqi_animation: animations/Stand/Gestures/ShowSky_4
+
+  # ── Discourse markers ────────────────────────────────────────────────────────
+
+  - id: explain_left
+    label: Explain Left
+    description: Extend the left hand palm-up for "on one hand" or to introduce a first point.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LShoulderRoll, LElbowRoll, LWristYaw]
+    tags: [discourse, explain, enumerate, one_hand, contrast]
+    naoqi_animation: animations/Stand/Gestures/Explain_1
+
+  - id: explain_right
+    label: Explain Right
+    description: Extend the right hand palm-up for "on the other hand" or a second contrasting point.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RShoulderRoll, RElbowRoll, RWristYaw]
+    tags: [discourse, explain, enumerate, other_hand, contrast]
+    naoqi_animation: animations/Stand/Gestures/Explain_2
+
+  - id: count_one
+    label: Count One
+    description: Raise a single finger to mark the first item in an enumeration.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RElbowRoll, RHand]
+    tags: [discourse, count, enumerate, first, list]
+    naoqi_animation: animations/Stand/Gestures/Explain_3
+
+  - id: count_two
+    label: Count Two
+    description: Raise two fingers to mark the second item in an enumeration.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [RShoulderPitch, RElbowRoll, RHand]
+    tags: [discourse, count, enumerate, second, list]
+    naoqi_animation: animations/Stand/Gestures/Explain_4
+
+  - id: hands_conclude
+    label: Hands Conclude
+    description: Bring both palms together briefly to signal a conclusion or summary.
+    duration_s: 2.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LElbowRoll, LHand, RShoulderPitch, RElbowRoll, RHand]
+    tags: [discourse, conclude, summary, finish, close]
+    naoqi_animation: animations/Stand/Gestures/BothArmsDown_1
+
+  # ── Rest / idle ──────────────────────────────────────────────────────────────
+
+  - id: rest_neutral
+    label: Rest Neutral
+    description: Arms hang naturally at the sides in a relaxed, neutral rest pose.
+    duration_s: 1.0
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LElbowRoll, RShoulderPitch, RElbowRoll]
+    tags: [rest, idle, neutral, calm, default]
+    naoqi_animation: animations/Stand/Waiting/TakeItEasy_1
+
+  - id: rest_arms_front
+    label: Rest Arms Front
+    description: Arms gently clasped in front at waist height, an attentive resting pose.
+    duration_s: 1.5
+    requires_pose: Stand
+    joints_used: [LShoulderPitch, LElbowRoll, LHand, RShoulderPitch, RElbowRoll, RHand]
+    tags: [rest, idle, attentive, front, calm]
+    naoqi_animation: animations/Stand/Waiting/WaitingForHuman_1
+
+  - id: idle_shift
+    label: Idle Weight Shift
+    description: A subtle side-to-side weight shift suggesting a relaxed, alive presence.
+    duration_s: 3.0
+    requires_pose: Stand
+    joints_used: [HipRoll, KneePitch]
+    tags: [rest, idle, alive, subtle, natural]
+    naoqi_animation: animations/Stand/Waiting/WakingUp_1
+
+  - id: look_around
+    label: Look Around
+    description: Slow head scan left and right, as if taking in the environment.
+    duration_s: 3.5
+    requires_pose: Stand
+    joints_used: [HeadYaw, HeadPitch]
+    tags: [rest, idle, look, scan, curious, environment]
+    naoqi_animation: animations/Stand/Waiting/LookingForHuman_1

@@ -1,0 +1,43 @@
+# dataset_to_pepper.yaml
+# Hand-curated mapping from each dataset's gesture-category labels to Pepper
+# library gesture IDs.  A null value means the category is excluded from
+# evaluation (no ground-truth mapping exists).
+#
+# ASSUMPTION: category-level mapping, not utterance-level.  Each BEAT2 "beat"
+# example maps to beat_medium as the canonical ground-truth Pepper gesture.
+# Tag-based partial credit (reward=0.5) covers related Pepper gestures with
+# the same tags.  A finer utterance-level mapping is future work; see
+# BUILD_NOTES.md.
+#
+# Format:
+#   <dataset_name>:
+#     <dataset_gesture_label>: <pepper_gesture_id | null>
+#
+# Verified against pepper_v1.yaml gesture IDs.
+
+beat2:
+  beat: beat_medium          # rhythmic stress marker → medium arm beat
+  deictic: point_forward     # pointing → forward point
+  iconic: show_big           # representational → show big (most common iconic in BEAT2)
+  metaphoric: explain_right  # abstract/metaphoric → discourse explain
+  discourse: hands_conclude  # discourse marker → concluding hand gesture
+  rest: rest_neutral         # no gesture / rest → neutral rest
+  no_gesture: null           # excluded: no physical gesture performed
+  greeting: wave_right       # greeting context → right-hand wave
+  affect: nod_yes            # affective/nodding → yes nod
+
+ted_gesture:
+  beat: beat_medium          # rhythmic beat → medium arm beat
+  deictic: point_forward     # pointing → forward point
+  iconic: show_amount        # iconic size/quantity → show amount
+  metaphoric: explain_left   # metaphoric → left-hand explanation
+  rest: rest_neutral         # rest pose → neutral rest
+  no_gesture: null           # excluded
+
+# (Optional) ZEGGS — stylistic dataset; not required for v1
+zeggs:
+  beat: beat_alternating     # ZEGGS beat style tends toward alternating
+  deictic: point_forward
+  iconic: present_open
+  rest: rest_neutral
+  no_gesture: null
